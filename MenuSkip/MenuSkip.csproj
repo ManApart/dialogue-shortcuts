@@ -34,7 +34,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <GamePath>R:\Games\SteamLibrary\steamapps\common\Stardew Valley\</GamePath>
-</PropertyGroup>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Build.Framework" />
@@ -60,11 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShipTrackerParser.cs" />
-    <Compile Include="ItemTrack.cs" />
     <Compile Include="MainModClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShippingTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="manifest.json">

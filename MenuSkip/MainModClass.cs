@@ -11,6 +11,7 @@ using StardewValley.Menus;
 using StardewModdingAPI.Events;
 using StardewValley.Objects;
 using Netcode;
+using Microsoft.Xna.Framework;
 
 
 //https://stardewvalleywiki.com/Modding:Modder_Guide/APIs/Events
@@ -19,24 +20,33 @@ namespace MenuSkip {
     public class MainModClass : Mod {
         private static MainModClass instance;
 
-      private String statsFilePath;
-        private int lastDayRun = -1;
-        private Dictionary<Chest, List<Item>> chestsToShip;
-        private Dictionary<Farmer, List<Item>> farmerItems;
-
-
         public override void Entry(IModHelper helper) {
            instance = this;            
-            helper.Events.GameLoop.Saved += AfterSaveEvent;
-
-            chestsToShip = new Dictionary<Chest, List<Item>>();
-            farmerItems = new Dictionary<Farmer, List<Item>>();
+            helper.Events.Input.ButtonPressed += OnMenu;
 
             Log("MenuSkip by Iceburg333 => Initialized");
         }
 
-        private void AfterSaveEvent(object sender, EventArgs e) {            
-            Log("after save");
+        private void OnMenu(object sender, EventArgs e) {  
+            ButtonPressedEventArgs be = e as ButtonPressedEventArgs;
+            if (Game1.activeClickableMenu != null)
+            {
+
+                if (Game1.activeClickableMenu is ChooseFromListMenu)
+                {
+                    ChooseFromListMenu menu = Game1.activeClickableMenu as ChooseFromListMenu;
+                    Rectangle click = menu.forwardButton.bounds;
+                    menu.receiveLeftClick(click.X, click.Y);
+                }
+
+                Log("Pressed in Menu");
+                if (be.Button == SButton.Space)
+                {
+                    Log("Pressed Space in Menu");
+                }
+                
+            }
+            
             
         }
 
