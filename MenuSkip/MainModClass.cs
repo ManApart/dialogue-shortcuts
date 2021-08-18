@@ -2,16 +2,9 @@
 
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Network;
-using Microsoft.Xna.Framework.Net;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using StardewValley.Menus;
 using StardewModdingAPI.Events;
-using StardewValley.Objects;
-using Netcode;
-using Microsoft.Xna.Framework;
 
 
 //https://stardewvalleywiki.com/Modding:Modder_Guide/APIs/Events
@@ -31,23 +24,51 @@ namespace MenuSkip {
             ButtonPressedEventArgs be = e as ButtonPressedEventArgs;
             if (Game1.activeClickableMenu != null)
             {
-
-                if (Game1.activeClickableMenu is ChooseFromListMenu)
+                //Log("In Menu " + Game1.activeClickableMenu);
+                switch (be.Button)
                 {
-                    ChooseFromListMenu menu = Game1.activeClickableMenu as ChooseFromListMenu;
-                    Rectangle click = menu.forwardButton.bounds;
-                    menu.receiveLeftClick(click.X, click.Y);
+                    case SButton.Space:
+                    case SButton.F1:
+                        ChooseSelection(0, Game1.activeClickableMenu);
+                        break;
+                    case SButton.F2:
+                        ChooseSelection(1, Game1.activeClickableMenu);
+                        break;
+                    case SButton.F3:
+                        ChooseSelection(2, Game1.activeClickableMenu);
+                        break;
+                    case SButton.F4:
+                        ChooseSelection(3, Game1.activeClickableMenu);
+                        break;
+                    default:
+                        break;
                 }
+               
 
-                Log("Pressed in Menu");
-                if (be.Button == SButton.Space)
-                {
-                    Log("Pressed Space in Menu");
-                }
-                
             }
             
-            
+        }
+
+        private void ChooseSelection(int selection, IClickableMenu menuIn)
+        {
+            if (menuIn is DialogueBox)
+            {
+                DialogueBox menu = menuIn as DialogueBox;
+                if (selection >= menu.responses.Count)
+                {
+                    selection = menu.responses.Count - 1;
+                }
+
+                if (menu.responses.Count > 0)
+                {
+                    Log("Picking " + menu.responses[selection].responseText);
+                    menu.responseCC[selection].snapMouseCursorToCenter();
+                    
+                    //Point click = menu.responseCC[selection].bounds.Center;
+                    //menu.receiveLeftClick(click.X, click.Y);
+                }
+
+            }
         }
 
     
