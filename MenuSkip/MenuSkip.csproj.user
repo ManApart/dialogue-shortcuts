@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartProgram>B:\Coding\C# Workspace\Stardew Valley\MenuSkip\MenuSkip\bin\Debug\StardewModdingAPI.exe</StartProgram>
-    <StartWorkingDirectory>B:\Coding\C# Workspace\Stardew Valley\MenuSkip\MenuSkip\bin\Debug\</StartWorkingDirectory>
+    <StartProgram>R:\Games\SteamLibrary\steamapps\common\Stardew Valley\StardewModdingAPI.exe</StartProgram>
+    <StartWorkingDirectory>N:\Coding\Workspace\mods\stardew-valley\menu-skip\MenuSkip\bin\Debug\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>
